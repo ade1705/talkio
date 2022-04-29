@@ -28,7 +28,14 @@ export default function HomePage() {
 
       <main>
         <section className='bg-white'>
-          <div className='layout flex min-h-screen flex-col items-center justify-center text-center'>
+          <div className='layout mt-20 min-h-screen text-center'>
+            <h1 className='aos text-3xl font-bold leading-tight tracking-tight md:text-6xl'>
+              Connect with Customers
+            </h1>
+            <p className='mb-8 mt-3 leading-6 text-opacity-70'>
+              Talk2Me supercharges your sales by facilitating communication with
+              your customers.
+            </p>
             <Vercel className='text-5xl' />
             <h1 className='mt-4'>
               Next.js + Tailwind CSS + TypeScript Starter
