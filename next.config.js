@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  images: {
+    domains: ['localhost', "www.chatbot.com", "faces-img.xcdn.link"],
+  },
   eslint: {
     dirs: ['src'],
   },
 
-  reactStrictMode: true,
+  reactStrictMode: false,
 
   // Uncoment to add domain whitelist
   // images: {

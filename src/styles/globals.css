@@ -116,3 +116,36 @@
     background-size: 0 2px, 100% 2px;
   }
 }
+
+#editorjs {
+  height: 250px;
+}
+.ql-toolbar.ql-snow {
+  border: none !important;
+}
+.ql-container.ql-snow {
+  border: none !important;
+}
+.bw-1 {
+  border-bottom: #eee solid 1px;
+}
+.subject {
+  all: unset;
+  width: 100%;
+  text-align: left;
+}
+.subject::placeholder {
+  text-align: left;
+}
+.subject:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}

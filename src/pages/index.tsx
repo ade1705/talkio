@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 
+import TalkDemo from '@/components/home/TalkDemo';
 import Layout from '@/components/layout/Layout';
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
@@ -7,6 +9,7 @@ import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 import Seo from '@/components/Seo';
 
+/* eslint-disable prefer-rest-params */
 /**
  * SVGR Support
  * Caveat: No React Props Type.
@@ -21,6 +24,23 @@ import Vercel from '~/svg/Vercel.svg';
 // to customize the default configuration.
 
 export default function HomePage() {
+  useEffect(() => {
+    (function (w, d, s, o, f, js, fjs) {
+      w['JS-Widget'] = o;
+      w[o] =
+        w[o] ||
+        function () {
+          (w[o].q = w[o].q || []).push(arguments);
+        };
+      (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
+      js.id = o;
+      js.src = f;
+      js.async = 1;
+      fjs.parentNode.insertBefore(js, fjs);
+    })(window, document, 'script', 'mw', 'http://localhost:8080/widget.js');
+    mw('init', { someConfiguration: 42 });
+    mw('message', 'Hello world!');
+  }, []);
   return (
     <Layout>
       {/* <Seo templateTitle='Home' /> */}
@@ -28,7 +48,10 @@ export default function HomePage() {
 
       <main>
         <section className='bg-white'>
-          <div className='layout mt-20 min-h-screen text-center'>
+          <div className='layout mt-10 min-h-screen text-center'>
+            <div className='mb-10'>
+              <TalkDemo />
+            </div>
             <h1 className='aos text-3xl font-bold leading-tight tracking-tight md:text-6xl'>
               Connect with Customers
             </h1>
@@ -67,7 +90,7 @@ export default function HomePage() {
               />
             </UnstyledLink>
 
-            <footer className='absolute bottom-2 text-gray-700'>
+            <footer className=' bottom-2 text-gray-700'>
               © {new Date().getFullYear()} By{' '}
               <UnderlineLink href='https://theodorusclarence.com?ref=tsnextstarter'>
                 Theodorus Clarence
