@@ -1,8 +1,9 @@
-import Image from 'next/image';
 import * as React from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+
+import Logo from '~/svg/logo.svg';
 
 const links = [{ href: '/', label: 'Login' }];
 
@@ -11,12 +12,7 @@ export default function Header() {
     <header className='sticky top-0 z-50 bg-white'>
       <div className='layout flex h-14 items-center justify-between'>
         <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
-          <Image
-            src='https://www.chatbot.com/chatbot-logo.svg'
-            height='50'
-            width='50'
-            alt='Logo'
-          />
+          <Logo className='text-8xl' />
         </UnstyledLink>
         <nav>
           <ul className='flex items-center justify-between space-x-4'>
