@@ -44,7 +44,6 @@ const TalkDemo = () => {
             maxLength={50}
             placeholder='Enter subject....'
             className='subject text-left'
-            data-id='subject'
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           />

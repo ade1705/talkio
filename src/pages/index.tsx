@@ -30,14 +30,16 @@ export default function HomePage() {
         function () {
           (w[o].q = w[o].q || []).push(arguments);
         };
-      js = d.createElement(s);
-      fjs = d.getElementsByTagName(s)[0];
+      (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
       js.id = o;
       js.src = f;
       js.async = 1;
       fjs.parentNode.insertBefore(js, fjs);
     })(window, document, 'script', 'mw', 'http://localhost:8080/widget.js');
-    mw('init', { customer: { domain: 'http://localhost:3000' } });
+    mw('init', {
+      default: { subject: 'Contact us today' },
+      customer: { domain: 'http://localhost:3000' },
+    });
   }, []);
   return (
     <Layout>

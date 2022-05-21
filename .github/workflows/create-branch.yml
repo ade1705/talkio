@@ -1,4 +1,4 @@
-name: Create Branch from Issue
+name: CreateModal Branch from Issue
 
 on:
   issues:
@@ -8,7 +8,7 @@ jobs:
   create_issue_branch_job:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Issue Branch
+      - name: CreateModal Issue Branch
         uses: robvanderleek/create-issue-branch@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
