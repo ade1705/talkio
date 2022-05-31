@@ -33,7 +33,7 @@ const TalkDemo = () => {
             alt='avatar'
             width='24'
             height='24'
-            src='https://faces-img.xcdn.link/image-lorem-face-2286.jpg'
+            src='https://picsum.photos/200'
             data-src='https://faces-img.xcdn.link/thumb-lorem-face-5433_thumb.jpg'
           />
           <span className='pl-1'>estherkolade@gmail.com</span>

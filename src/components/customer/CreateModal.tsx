@@ -1,30 +1,34 @@
 import { Dialog } from '@headlessui/react';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as React from 'react';
 
+import Authenticator from '@/lib/authentication/authenticator';
 import FormsService from '@/lib/forms/forms-service';
 import FormsValidator from '@/lib/forms/forms-validator';
 
 import Loading from '@/components/Loading';
 import SuccessIcon from '@/components/SuccessIcon';
 
+import { userContext } from '@/context/user-context';
+
 import { db } from '../../../firebase-config';
 
-enum Status {
+export enum FormStatus {
   ENABLED = 'enabled',
   DISABLED = 'disabled',
 }
 
-enum Type {
+export enum FormType {
   POPUP = 'popup',
   LEGACY = 'legacy',
 }
 
-export type Form = {
+export type TalkioForm = {
+  userId: string;
   name: string;
   email: string;
-  status: Status;
-  type: Type;
+  status: FormStatus;
+  type: FormType;
   dateCreated: number;
 };
 
@@ -35,13 +39,26 @@ enum State {
 }
 
 const CreateModal = () => {
-  const defaultForm: Form = {
+  const defaultForm: TalkioForm = {
+    userId: '',
     name: '',
     email: '',
-    status: Status.DISABLED,
-    type: Type.POPUP,
+    status: FormStatus.ENABLED,
+    type: FormType.POPUP,
     dateCreated: 0,
   };
+  const authenticator = new Authenticator(useContext(userContext));
+  useEffect(() => {
+    try {
+      const userId = authenticator.getUserId();
+      // eslint-disable-next-line no-console
+      console.log({ userId });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log({ e });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState(defaultForm);
   const [state, setState] = useState(State.InProgress);
@@ -61,7 +78,7 @@ const CreateModal = () => {
       setState(State.Success);
     } catch (e) {
       setState(State.InProgress);
-      setError(e.message);
+      setError((e as Error).message);
     }
   };
 
@@ -168,11 +185,18 @@ const CreateModal = () => {
                           className=' block w-full rounded-sm border border-gray-300 text-sm capitalize text-gray-900 focus:border focus:border-blue-500 focus:outline-2 focus:ring-blue-500 active:border active:border-gray-300'
                           value={form.type}
                           onChange={(e) =>
-                            setForm({ ...form, type: e.target.value as Type })
+                            setForm({
+                              ...form,
+                              type: e.target.value as FormType,
+                            })
                           }
                         >
-                          <option value={Type.LEGACY}>{Type.LEGACY}</option>
-                          <option value={Type.POPUP}>{Type.POPUP}</option>
+                          <option value={FormType.LEGACY}>
+                            {FormType.LEGACY}
+                          </option>
+                          <option value={FormType.POPUP}>
+                            {FormType.POPUP}
+                          </option>
                         </select>
                       </div>
                       <div className='mt-6 mb-4 grid grid-cols-2 gap-8'>
@@ -182,14 +206,14 @@ const CreateModal = () => {
                             id='status'
                             className='border border-gray-300 checked:bg-blue-500 focus:border focus:border-blue-500 focus:border-pink-500 focus:ring  focus:ring-pink-400/50 active:border active:outline'
                             value={form.status}
-                            checked={form.status === Status.ENABLED}
+                            checked={form.status === FormStatus.ENABLED}
                             onChange={() =>
                               setForm({
                                 ...form,
                                 status:
                                   form.status === 'disabled'
-                                    ? Status.ENABLED
-                                    : Status.DISABLED,
+                                    ? FormStatus.ENABLED
+                                    : FormStatus.DISABLED,
                               })
                             }
                           />

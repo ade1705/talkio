@@ -32,13 +32,13 @@ const TabbableMenu = () => {
   return (
     <div className='flex justify-center'>
       <div className='max-w-8xl mx-auto px-4 sm:px-6 md:px-8'>
-        <div className='my-4 flex rounded-md bg-white/30 p-1'>
+        <div className='my-4 flex rounded-md bg-white p-1'>
           {menus.map((menu: Menu) => (
             <UnstyledLink
               href={menu.url}
               key={menu.name}
-              className={`w-28 p-3 text-center hover:bg-white hover:text-blue-700 ${
-                router.pathname === menu.url && `bg-white text-blue-700`
+              className={`w-28 p-3 text-center hover:bg-blue-50 hover:text-blue-700 ${
+                router.pathname === menu.url && `bg-blue-50 text-blue-700`
               } cursor-pointer rounded-md text-sm font-medium`}
             >
               {menu.name}

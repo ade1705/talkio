@@ -1,9 +1,9 @@
-import { Form } from '@/components/customer/CreateModal';
+import { TalkioForm } from '@/components/customer/CreateModal';
 
 class FormsValidator {
   errors: string[] = [];
 
-  validate = (form: Form) => {
+  validate = (form: TalkioForm) => {
     if (form.name === '') {
       throw new Error('`name` field is empty');
     }

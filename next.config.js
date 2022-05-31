@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ['localhost', "www.chatbot.com", "faces-img.xcdn.link"],
+    domains: ['localhost', "www.chatbot.com", "picsum.photos", "faces-img.xcdn.link"],
   },
   eslint: {
     dirs: ['src'],

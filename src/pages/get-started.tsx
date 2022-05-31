@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useContext, useEffect, useState } from 'react';
 
@@ -39,6 +40,7 @@ const copy = {
   },
 };
 const GetStarted = () => {
+  const router = useRouter();
   const [authStatus, setAuthStatus] = useState(AuthStatus.Login);
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
@@ -48,12 +50,20 @@ const GetStarted = () => {
   const user = useContext(userContext);
   const authenticator = new Authenticator(user);
   useEffect(() => {
-    const auth = async () =>
+    const auth = async () => {
+      if (!window.location.href.includes('apiKey')) {
+        return;
+      }
       await authenticator.checkLogin(
         window.localStorage.getItem('email') ?? ''
       );
+      return router.push('customer/dashboard');
+    };
     auth()
-      .then((_) => window.localStorage.setItem('isAuth', 'true'))
+      .then((_) => {
+        window.localStorage.setItem('isAuth', 'true');
+        // router.push('/customer/dashboard');
+      })
       .catch(console.error); // eslint-disable-line no-console
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const continueAuth = async () => {

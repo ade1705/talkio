@@ -37,15 +37,20 @@ class Authenticator {
     if (email === '') {
       throw new Error('email not found');
     }
-    await signInWithEmailLink(auth, email, this.location);
-    // .then(() => {
-    //     //use provider to save isAuth with the email
-    // })
-    // .catch((error) => {
-    //     console.error({ error });
-    //     //also delete from local storage
-    //     //ToDO: unable to authenticate for some reason, should show an error
-    // });
+    try {
+      const response = await signInWithEmailLink(auth, email, this.location);
+      window.sessionStorage.setItem('userFireBaseId', response.user.uid);
+    } catch (e) {
+      throw new Error((e as Error).message);
+    }
+  };
+
+  getUserId = (): string => {
+    const userFirebaseId = window.sessionStorage.getItem('userFirebaseId');
+    if (userFirebaseId === null) {
+      throw new Error('User not logged In');
+    }
+    return userFirebaseId;
   };
 }
 

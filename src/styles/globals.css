@@ -160,7 +160,7 @@ select:focus {
   border-radius: 50%;
   display: block;
   stroke-width: 2;
-  stroke: #4bb71b;
+  stroke: #295be6;
   stroke-miterlimit: 10;
   box-shadow: inset 0px 0px 0px #295be6;
   animation: fill 0.4s ease-in-out 0.4s forwards,
